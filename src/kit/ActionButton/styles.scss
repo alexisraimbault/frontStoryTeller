@@ -1,0 +1,13 @@
+.action-button {
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 16px;
+  // border-radius: 4px;
+  min-width: 100px;
+  border: none;
+  background-color: var(--flashy-primary);
+  color: var(--sweet-primary);
+  outline: none;
+  font-weight: 600;
+  font-size: 16px;
+}

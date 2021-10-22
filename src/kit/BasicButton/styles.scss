@@ -1,0 +1,14 @@
+.basic-button {
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 16px;
+  // border-radius: 4px;
+  min-width: 100px;
+  border: none;
+  background: none;
+  border: solid 1px var(--flashy-primary);
+  color: var(--neutral-primary);
+  outline: none;
+  font-weight: 600;
+  font-size: 16px;
+}

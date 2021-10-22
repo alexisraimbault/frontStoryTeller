@@ -1,0 +1,40 @@
+.creator-container {
+  display: flex;
+
+  .add-page-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: 32px;
+    right: 32px;
+    cursor: pointer;
+  }
+
+  .popup-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(black, 0.6);
+
+    .popup-quit {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+    }
+  }
+
+  .pages-container {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
