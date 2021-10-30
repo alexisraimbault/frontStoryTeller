@@ -13,6 +13,7 @@ import Login from './views/Login';
 import Creator from './views/Creator';
 import FlowCreator from './views/FlowCreator';
 import StoryListing from './views/StoryListing';
+import StoryReader from './views/StoryReader';
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
             <Route path="/list">
               <StoryListing />
             </Route>
-            <Route path="/flow/:id?" component={FlowCreator}>
-            </Route>
+            <Route path="/flow/:id?" component={FlowCreator} />
+            <Route path="/story/:id" component={StoryReader} />
             <Route path="/">
               <Login />
             </Route>
