@@ -28,18 +28,7 @@ const Creator = ({ props }) => {
       label: 'Initial label',
       idx: 0,
       type: 'choice',
-      choices: [
-        {
-          idx: 0,
-          label: 'Choix 1',
-          link: null,
-        },
-        {
-          idx: 1,
-          label: 'Choix 2',
-          link: null,
-        }
-      ],
+      choices: [],
       meta: {},
     }]);
 
@@ -73,24 +62,14 @@ const Creator = ({ props }) => {
         label: 'Initial label',
         idx: newPageIdx,
         type: 'choice',
-        choices: [
-          {
-            idx: 0,
-            label: 'Choix 1',
-            link: null,
-          },
-          {
-            idx: 1,
-            label: 'Choix 2',
-            link: null,
-          }
-        ],
+        choices: [],
         meta: {},
       }
 
       setPages(_.concat(pages, newPage));
       setPopup(
         <CreateEditPopup
+          pages={pages}
           pageData={newPage}
           onUpdatePage={updatePage(newPageIdx)}
         />
@@ -196,6 +175,7 @@ const Creator = ({ props }) => {
                 onClick={() => {
                   setPopup(
                     <CreateEditPopup
+                      pages={pages}
                       pageData={_.find(pages, {idx: node.data.data.idx})}
                       onUpdatePage={updatePage(node.data.data.idx)}
                     />
@@ -248,6 +228,7 @@ const Creator = ({ props }) => {
             onClick={() => {
               setPopup(
                 <CreateEditPopup
+                  pages={pages}
                   pageData={_.find(pages, {idx: node.data.data.idx})}
                   onUpdatePage={updatePage(node.data.data.idx)}
                 />
@@ -279,6 +260,7 @@ const Creator = ({ props }) => {
                 onClick={() => {
                   setPopup(
                     <CreateEditPopup
+                      pages={pages}
                       pageData={_.find(pages, {idx: page.idx})}
                       onUpdatePage={updatePage(page.idx)}
                     />

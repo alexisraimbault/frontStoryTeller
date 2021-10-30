@@ -11,6 +11,8 @@ import SessionProvider from './views/SessionProvider';
 
 import Login from './views/Login';
 import Creator from './views/Creator';
+import FlowCreator from './views/FlowCreator';
+import StoryListing from './views/StoryListing';
 
 function App() {
   return (
@@ -23,6 +25,11 @@ function App() {
             </Route>
             <Route path="/create">
               <Creator />
+            </Route>
+            <Route path="/list">
+              <StoryListing />
+            </Route>
+            <Route path="/flow/:id?" component={FlowCreator}>
             </Route>
             <Route path="/">
               <Login />

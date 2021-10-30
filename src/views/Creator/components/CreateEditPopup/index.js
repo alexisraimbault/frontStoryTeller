@@ -6,7 +6,7 @@ import ActionButton from '../../../../kit/ActionButton';
 
 import './styles.scss';
 
-const CreateEditPopup = ({ pageData, onUpdatePage }) => {
+const CreateEditPopup = ({ pageData, onUpdatePage, pages }) => {
     const [page, setPage] = useState(pageData);
 
     const updatePageLabel = () => input => {
@@ -33,6 +33,13 @@ const CreateEditPopup = ({ pageData, onUpdatePage }) => {
       setPage(tmpPage);
     };
 
+    const addChoice = () => {
+      const tmpPage = _.cloneDeep(page);
+      tmpPage.choices = _.concat(_.get(tmpPage, 'choices', []), {idx: _.size(_.get(tmpPage, 'choices', [])), label: '', link: null});
+
+      setPage(tmpPage);
+    }
+
     return (
       <div>
             <Input
@@ -40,23 +47,30 @@ const CreateEditPopup = ({ pageData, onUpdatePage }) => {
               value={page.label}
               onChange={updatePageLabel()}
             />
-            {_.map(page.choices, choice => {
+            <div className="edit-choices-container">
+              {_.map(page.choices, choice => {
 
-              return (
-                <>
-                  <Input
-                    placeholder="choice label"
-                    value={choice.label}
-                    onChange={updatePageChoiceLabel(choice.idx)}
-                  />
-                  <Input
-                    placeholder="choice redirection"
-                    value={choice.link}
-                    onChange={updatePageChoiceLink(choice.idx)}
-                  />
-                </>
-              )
-            })}
+                return (
+                  <div className="edit-choice-container">
+                    <Input
+                      placeholder="choice label"
+                      value={choice.label}
+                      onChange={updatePageChoiceLabel(choice.idx)}
+                    />
+                    <Input
+                      placeholder="choice redirection"
+                      value={choice.link}
+                      onChange={updatePageChoiceLink(choice.idx)}
+                    />
+                  </div>
+                )
+              })}
+              <div 
+              onClick={addChoice}
+              >
+                NEW CHOICE
+              </div>
+            </div>
             <div 
              onClick={_.partial(onUpdatePage, page)}
             >

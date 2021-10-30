@@ -1,0 +1,63 @@
+.flow-container-page {
+  .add-page-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: 32px;
+    right: 32px;
+    cursor: pointer;
+    z-index: 20;
+    border: solid 1px grey;
+  }
+
+  .save-page-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 40px;
+    padding: 0px 20px;
+    border-radius: 16px;
+    bottom: 32px;
+    right: 100px;
+    cursor: pointer;
+    z-index: 20;
+    border: solid 1px grey;
+  }
+
+  .popup-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(black, 0.6);
+    z-index: 20;
+
+    .popup-quit {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+    }
+  }
+
+  .page-node-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+  }
+
+  .react-flow__handle {
+    position: inherit;
+  }
+}
