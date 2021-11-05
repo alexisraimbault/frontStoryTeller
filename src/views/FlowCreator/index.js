@@ -105,6 +105,7 @@ const FlowCreator = ({ match }) => {
     if(_.isNil(id)) {
       axios.post(`${serverURL}/story`, {
         content: formatttedContent,
+        name: 'nouvelle story',
       }).then(res => {
         setId(_.get(res, 'data.id'));
       })
