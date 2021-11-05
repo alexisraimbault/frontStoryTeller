@@ -1,0 +1,34 @@
+.story-view-container {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+
+  .page-form-wrapper {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .page-form {
+      padding: 40px 80px;
+      background-color: white;
+      border-radius: 12px;
+
+      .page-label {
+        font-size: large;
+        margin-bottom: 12px;
+      }
+
+      .page-choices {
+        display: flex;
+        justify-content: center;
+
+        .page-choice {
+          cursor: pointer;
+          margin: 0 12px;
+        }
+      }
+    }
+  }
+}

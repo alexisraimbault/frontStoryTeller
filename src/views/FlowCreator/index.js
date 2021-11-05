@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import axios from 'axios';
 import { serverURL } from '../../statics';
 
-import ReactFlow from 'react-flow-renderer';
+import ReactFlow, { Background, MiniMap } from 'react-flow-renderer';
 import { Handle } from 'react-flow-renderer';
 
 import Input from '../../kit/Input';
@@ -138,6 +138,37 @@ const FlowCreator = ({ match }) => {
     updatePage(node.data.idx)(node);
   }
 
+  const onElementClick = (event, element) => {
+    const isEdge = _.has(element, 'target') && _.has(element, 'source');
+    
+    if(!isEdge) {
+      return;
+    }
+    
+    setPopup(
+      <CreateLinkPopup 
+        onSaveLink={editLinkLabel(element.id)}
+        defaultLabel={_.find(links, {id: element.id}).label}
+      />
+    );
+  }
+
+  const editLinkLabel = linkId => newLabel => {
+    const tmpLinks = _.cloneDeep(links);
+    const editingLikIdx = _.findIndex(links, {id: linkId});
+
+    tmpLinks[editingLikIdx].label = newLabel;
+    setLinks(tmpLinks);
+    setPopup(null);
+  }
+
+  const onElementsRemove = elements => {
+    const removedIds= _.map(elements, 'id');
+    
+    setLinks(_.filter(links, link => !_.includes(removedIds, link.id)));
+    setPages(_.filter(pages, page => !_.includes(removedIds, page.id)));
+  }
+
   const onConnect = ({ source, target }) => {
     console.log('ALEXIS onConnect', { source, target });
     const sourceIdx = _.findIndex(pages, {id: source});
@@ -182,7 +213,9 @@ const FlowCreator = ({ match }) => {
     setPages(tmpPages);
   }
 
-  const openEditNodeTitle = () => (idx, currrentLabel, defaultImage) => () => {
+  const openEditNodeTitle = () => (idx, currrentLabel, defaultImage) => event => {
+    console.log('ALEXIS event', event);
+    
     setPopup(
       <CreateLinkPopup 
         onSaveLink={saveNewTitle(idx)}
@@ -251,9 +284,15 @@ const FlowCreator = ({ match }) => {
       <ReactFlow 
         elements={_.concat(pages, links)} 
         onNodeDragStop={onNodeDragStop}
+        onElementClick={onElementClick}
+        onElementsRemove={onElementsRemove}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
-       />
+        snapToGrid
+       >
+        <Background />
+        <MiniMap />
+      </ReactFlow>
         {!_.isNil(popup) && (
           <div className="popup-container">
             <div 

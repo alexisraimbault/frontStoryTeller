@@ -1,4 +1,13 @@
 .page-node-container {
+  border: solid 1px grey;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background: white;
+
   .page-image-preview {
     background-size: cover;
     width: 40px;
@@ -7,5 +16,11 @@
     position: absolute;
     bottom: -20px;
     right: 8px;
+  }
+
+  .react-flow__handle {
+    position: inherit;
+    width: 8px;
+    height: 8px;
   }
 }

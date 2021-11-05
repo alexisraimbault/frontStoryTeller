@@ -18,7 +18,7 @@ const PageNode = ({ data, isConnectable, saveNewTitle, openEditNodeTitle }) => {
       <Handle
         type="target"
         id="a"
-        style={{ background: '#555' }}
+        style={{ background: '#555', marginTop: '-13px', marginBottom: '12px' }}
         isConnectable={isConnectable}
       />
       {!_.isNil(_.get(data, 'images.default')) && (
@@ -35,7 +35,7 @@ const PageNode = ({ data, isConnectable, saveNewTitle, openEditNodeTitle }) => {
       <Handle
         type="source"
         id="b"
-        style={{background: '#555' }}
+        style={{background: '#555', marginBottom: '-13px', marginTop: '12px' }}
         isConnectable={isConnectable}
       />
     </div>

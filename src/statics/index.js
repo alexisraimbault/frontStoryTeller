@@ -1,4 +1,4 @@
-const serverURL = 'http://localhost:3000';
+const serverURL = 'https://storytellerfr.herokuapp.com';
 
 export {
     serverURL,

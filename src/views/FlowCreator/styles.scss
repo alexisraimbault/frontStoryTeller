@@ -49,15 +49,7 @@
     }
   }
 
-  .page-node-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 12px;
-  }
-
-  .react-flow__handle {
-    position: inherit;
+  .react-flow__minimap {
+    left: 10px !important;
   }
 }

@@ -39,22 +39,27 @@ const StoryReader = ({ match }) => {
     }
 
     return _.isNil(currentNode) ? null : (
-        <div className="story-view-container">
-            <div className="page-form">
-                <div className="page-label">{currentNode.data.label}</div>
-                <div className="page-choices">
-                    {_.map(choicesFromCurrentNode, choice => {
+        <div 
+            className="story-view-container"
+            style={_.isNil(_.get(currentNode, 'data.images.default')) ? {} : {backgroundImage: `url(${serverURL}/file/${currentNode.data.images.default})`}}
+        >
+            <div className="page-form-wrapper">
+                <div className="page-form">
+                    <div className="page-label">{currentNode.data.label}</div>
+                    <div className="page-choices">
+                        {_.map(choicesFromCurrentNode, choice => {
 
 
-                        return (
-                            <div 
-                                className="page-choice"
-                                onClick={navigateTo(choice.target)}
-                            >
-                                {choice.label}
-                            </div>
-                        )
-                    })}
+                            return (
+                                <div 
+                                    className="page-choice"
+                                    onClick={navigateTo(choice.target)}
+                                >
+                                    {choice.label}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
