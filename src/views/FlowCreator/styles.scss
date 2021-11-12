@@ -1,4 +1,6 @@
 .flow-container-page {
+  background-color: white;
+
   .add-page-btn {
     position: absolute;
     display: flex;
@@ -17,18 +19,24 @@
 
   .save-page-btn {
     position: absolute;
+    z-index: 20;
+    bottom: 32px;
+    right: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    height: 40px;
-    padding: 0px 20px;
-    border-radius: 16px;
-    bottom: 32px;
-    right: 100px;
+    border-radius: 100px;
+    padding: 12px 20px;
     cursor: pointer;
-    z-index: 20;
-    border: solid 1px grey;
+    // border: solid 1px grey;
+    color: white;
+    background-color: var(--orange);
+
+    .save-page-btn-label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 12px;
+    }
   }
 
   .popup-container {
@@ -42,10 +50,19 @@
     background-color: rgba(black, 0.6);
     z-index: 20;
 
+    .popup-content-container {
+      position: relative;
+      background-color: white;
+      width: 500px;
+      border-radius: 12px;
+      padding: 30px 38px;
+    }
+
     .popup-quit {
+      cursor: pointer;
       position: absolute;
-      top: 10%;
-      right: 10%;
+      top: 12px;
+      right: 12px;
     }
   }
 

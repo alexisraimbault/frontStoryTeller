@@ -3,6 +3,9 @@ import * as _ from 'lodash';
 import axios from 'axios';
 import { serverURL } from '../../statics';
 
+import { VscClose } from "react-icons/vsc";
+import { FaSave } from "react-icons/fa";
+
 import ReactFlow, { Background, MiniMap } from 'react-flow-renderer';
 import { Handle } from 'react-flow-renderer';
 
@@ -118,6 +121,7 @@ const FlowCreator = ({ match }) => {
   }
 
   const onCreatePage = () => () => {
+    // TODO open edition instead
     const newNode =  {
       id: `${idxCpt + 1}`,
       type: 'custom',
@@ -150,6 +154,8 @@ const FlowCreator = ({ match }) => {
       <CreateLinkPopup 
         onSaveLink={editLinkLabel(element.id)}
         defaultLabel={_.find(links, {id: element.id}).label}
+        popupTitle="Nom du lien"
+        popupSubTitle="Vous pouvez changer le nom de ce lien"
       />
     );
   }
@@ -184,6 +190,8 @@ const FlowCreator = ({ match }) => {
       <CreateLinkPopup 
         onSaveLink={addNewLink(sourceIdx, targetIdx)}
         defaultLabel="choice"
+        popupTitle="Nouveau lien"
+        popupSubTitle="Vous pouvez choisir le nom de ce lien"
       />
     );
   }
@@ -224,6 +232,8 @@ const FlowCreator = ({ match }) => {
         setPopup={setPopup}
         withImageUpload
         defaultImage={defaultImage}
+        popupTitle="Édition de la page"
+        popupSubTitle="Vous pouvez modifier les informations de cette page"
       />
     );
   }
@@ -279,7 +289,6 @@ const FlowCreator = ({ match }) => {
     custom: renderPageNode,
   };
   
-  console.log('ALEXIS rendering', {pages, links});
   return (
     <div className="flow-container-page" style={{ height: window.innerHeight }}>
       <ReactFlow 
@@ -296,15 +305,18 @@ const FlowCreator = ({ match }) => {
       </ReactFlow>
         {!_.isNil(popup) && (
           <div className="popup-container">
-            <div 
-              onClick={_.partial(setPopup, null)}
-              className="popup-quit"
-            >
-              close popup
+            <div className="popup-content-container">
+                <div 
+                    onClick={_.partial(setPopup, null)}
+                    className="popup-quit"
+                >
+                    <VscClose />
+                </div>
+                {popup}
             </div>
-              {popup}
           </div>
         )}
+        {/* TODO faire en drag and drop à la place */}
         <div 
           className="add-page-btn"
           onClick={onCreatePage()}
@@ -315,7 +327,8 @@ const FlowCreator = ({ match }) => {
           className="save-page-btn"
           onClick={onSaveStory()}
         >
-          save
+          <FaSave />
+          <div className="save-page-btn-label">{"Sauvegarder"}</div>
         </div>
     </div>
   )

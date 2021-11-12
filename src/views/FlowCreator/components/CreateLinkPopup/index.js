@@ -7,7 +7,7 @@ import Uploader from '../../../../kit/Uploader';
 
 import './styles.scss';
 
-const CreateLinkPopup = ({ onSaveLink, defaultLabel, withImageUpload, defaultImage }) => {
+const CreateLinkPopup = ({ onSaveLink, defaultLabel, withImageUpload, defaultImage, popupTitle, popupSubTitle }) => {
     const [linkName, setLinkName] = useState(defaultLabel);
     const [images, setImages] = useState(_.isNil(defaultImage) ? [] : [defaultImage]);
 
@@ -19,23 +19,25 @@ const CreateLinkPopup = ({ onSaveLink, defaultLabel, withImageUpload, defaultIma
     }
 
     return (
-      <div>
-            <Input
-              placeholder="label"
-              value={linkName}
-              onChange={onUpdateLinkName()}
-            />
-            {withImageUpload && (
-              <Uploader 
-                updateImages={setImages}
-                images={images}
-              />
-            )}
-            <ActionButton 
-             onClick={saveLink()}
-             label="Save"
-            />
-        </div>
+      <div className="popup-wrapper">
+        {!_.isEmpty(popupTitle) && <div className="popup-title">{popupTitle}</div>}
+        {!_.isEmpty(popupSubTitle) && <div className="popup-subtitle">{popupSubTitle}</div>}
+        <Input
+          placeholder="label"
+          value={linkName}
+          onChange={onUpdateLinkName()}
+        />
+        {withImageUpload && (
+          <Uploader 
+            updateImages={setImages}
+            images={images}
+          />
+        )}
+        <ActionButton 
+          onClick={saveLink()}
+          label="Save"
+        />
+      </div>
     )
 }
 

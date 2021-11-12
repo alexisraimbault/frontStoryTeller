@@ -4,6 +4,9 @@ import axios from 'axios';
 import { serverURL } from '../../statics';
 import { useHistory } from 'react-router-dom';
 
+import { MdAddCircle } from 'react-icons/md';
+import { VscClose } from "react-icons/vsc";
+
 import Input from '../../kit/Input';
 import ActionButton from '../../kit/ActionButton';
 import CreateLinkPopup from '../FlowCreator/components/CreateLinkPopup';
@@ -77,45 +80,62 @@ const StoryListing = ({ props }) => {
         setPopup(
           <CreateLinkPopup 
             onSaveLink={createStory()}
-            defaultLabel="Nouvelle story"
+            defaultLabel="Nouvelle Histoire"
+            popupTitle="Nouvelle Histoire"
+            popupSubTitle="Vous pouvez choisir le nom de votre histoire"
           />
         );
     };
 
-    console.log('ALEXIS RENDERING story listing');
+    const renderStory = story => {
+
+        return (
+            <div 
+                className="story-container"
+            >
+                <div className="story-title">{_.isNil(_.get(story, 'name')) ? 'Name not defined' : story.name}</div>
+                <div className="story-subtitles-container">
+                    <div className="story-subtitle">{`${_.size(_.get(story, 'content.pages', []))} page(s)`}</div>
+                    <div className="story-subtitle">{`${_.size(_.get(story, 'content.links', []))} link(s)`}</div>
+                </div>
+                <div className="story-listing-cta">
+                    <ActionButton 
+                    onClick={_.partial(navigateToFlow, story.id)}
+                    label="Éditer"
+                    />
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="stories-listing-container">
-            <div className="stories-container">
-                {_.map(myStories, story => {
-
-                    return (
-                        <div 
-                            className="story-container"
-                            onClick={_.partial(navigateToFlow, story.id)}
-                        >
-                            {_.isNil(_.get(story, 'name')) ? 'Name not defined' : story.name}
-                        </div>
-                    )
-                })}
-            </div>
-            {!_.isNil(popup) && (
-                <div className="popup-container">
-                    <div 
-                        onClick={_.partial(setPopup, null)}
-                        className="popup-quit"
-                    >
-                    close popup
-                    </div>
-                    {popup}
-                </div>
-            )}
+            <div className="stories-listing-top-container">
+                <div className="stories-title">{`${_.size(myStories)} Histoire(s)`}</div>
             <div 
                 className="add-story-btn"
                 onClick={onCreateStory()}
             >
-            +
+                <MdAddCircle />
+                <div className="add-story-btn-label">{"Nouvelle Histoire"}</div>
             </div>
+            </div>
+            <div className="stories-container">
+                {_.map(myStories, story => renderStory(story))}
+            </div>
+            {!_.isNil(popup) && (
+                <div className="popup-container">
+                    <div className="popup-content-container">
+                        <div 
+                            onClick={_.partial(setPopup, null)}
+                            className="popup-quit"
+                        >
+                            <VscClose />
+                        </div>
+                        {popup}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

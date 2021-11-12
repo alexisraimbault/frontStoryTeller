@@ -1,12 +1,34 @@
-.edit-choices-container {
+.popup-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
-  .edit-choice-container {
+  .popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .popup-subtitle {
+    color: var(--grey);
+    margin-bottom: 16px;
+  }
+
+  .action-button {
+    margin-top: 28px;
+  }
+
+  .edit-choices-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .edit-choice-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

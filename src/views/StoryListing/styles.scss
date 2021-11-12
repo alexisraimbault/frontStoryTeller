@@ -1,17 +1,64 @@
 .stories-listing-container {
+  .stories-listing-top-container {
+    padding: 60px 120px 0 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .stories-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .stories-container {
+    padding: 40px 120px 60px 120px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    .story-container {
+      background-color: white;
+      width: 280px;
+      border-radius: 12px;
+      padding: 16px 24px;
+
+      .story-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .story-subtitles-container {
+        display: flex;
+        justify-content: space-between;
+        color: var(--grey);
+      }
+
+      .story-listing-cta {
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
   .add-story-btn {
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    bottom: 32px;
-    right: 32px;
+    border-radius: 100px;
+    padding: 12px 20px;
     cursor: pointer;
-    border: solid 1px grey;
+    // border: solid 1px grey;
+    color: white;
+    background-color: var(--orange);
+
+    .add-story-btn-label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 12px;
+    }
   }
 
   .popup-container {
@@ -25,10 +72,19 @@
     background-color: rgba(black, 0.6);
     z-index: 20;
 
+    .popup-content-container {
+      position: relative;
+      background-color: white;
+      width: 500px;
+      border-radius: 12px;
+      padding: 30px 38px;
+    }
+
     .popup-quit {
+      cursor: pointer;
       position: absolute;
-      top: 10%;
-      right: 10%;
+      top: 12px;
+      right: 12px;
     }
   }
 }

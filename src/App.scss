@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+
+.App {
+  font-family: "DM Sans", sans-serif;
+  --light-grey: #f2f4f3;
+  --orange: #f58a07;
+  --grey: #6f8695;
+  --blue: #1c448e;
+  --black: #191516;
+
+  background-color: var(--light-grey);
+  min-height: 100vh;
+}
