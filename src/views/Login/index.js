@@ -4,6 +4,9 @@ import axios from 'axios';
 import { serverURL } from '../../statics';
 import { useHistory } from 'react-router-dom';
 
+import ReactFlow, { Background } from 'react-flow-renderer';
+import { Handle } from 'react-flow-renderer';
+
 import Input from '../../kit/Input';
 import ActionButton from '../../kit/ActionButton';
 
@@ -21,9 +24,9 @@ const Login = ({ props }) => {
     const history = useHistory();
 
     useEffect(() => {
-        if(!_.isEmpty(_.get(contextData, 'session'))) {
-            history.push('/list')
-        }
+        // if(!_.isEmpty(_.get(contextData, 'session'))) {
+        //     history.push('/list')
+        // }
     }, [])
 
     const onChangeMail = input => {
@@ -46,22 +49,62 @@ const Login = ({ props }) => {
         });
     }
 
+    const renderPageNode = ({data}) => {
+
     return (
-        <div>
-            <Input
-                placeholder="mail"
-                value={mail}
-                onChange={onChangeMail}
+        <div 
+          className="node-example-container"
+        >
+            <Handle
+                type="target"
+                id="a"
+                style={{ background: '#555', marginTop: '-25px', marginBottom: '24px' }}
             />
-            <Input
-                placeholder="password"
-                value={password}
-                onChange={onChangePassword}
+            <div className="node-title-container">{data.label}</div>
+            <Handle
+                type="source"
+                id="b"
+                style={{background: '#555', marginBottom: '-25px', marginTop: '24px' }}
             />
-            <ActionButton
-                label="login"
-                onClick={onLogin}
-            />
+        </div>
+    )
+    }
+
+    const nodeTypes = {
+        custom: renderPageNode,
+    };
+
+    return (
+        <div className="login-page-container">
+            <div className="flow-example-container">
+                <ReactFlow 
+                    elements={[]} 
+                    nodeTypes={nodeTypes}
+                    snapToGrid
+                >
+                    <Background />
+                </ReactFlow>
+            </div>
+            <div className="login-page-infos-container">
+                <div className="title">Flow Editor</div>
+                <div className="subtitle">L'outil de création de flow le plus simple et complet</div>
+            </div>
+            <div className="login-form-container">
+                <Input
+                    placeholder="Mail"
+                    value={mail}
+                    onChange={onChangeMail}
+                />
+                <Input
+                    placeholder="Password"
+                    value={password}
+                    onChange={onChangePassword}
+                />
+                <ActionButton
+                    label="login"
+                    onClick={onLogin}
+                />
+            </div>
         </div>
     )
 }

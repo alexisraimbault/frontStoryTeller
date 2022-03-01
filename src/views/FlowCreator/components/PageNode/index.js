@@ -4,7 +4,6 @@ import { serverURL } from '../../../../statics';
 
 import { Handle } from 'react-flow-renderer';
 import { GoPencil } from 'react-icons/go';
-import { VscClose } from "react-icons/vsc";
 
 import Input from '../../../../kit/Input';
 import ActionButton from '../../../../kit/ActionButton';
